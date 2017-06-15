@@ -7,6 +7,13 @@ import matplotlib.dates
 import numpy
 import sys
 
+def DateObject(date,time):
+    datearr = date.split('-')
+    timearr = time.split(':')
+    datearr,timearr =numpy.array(datearr,dtype=int),numpy.array(timearr,dtype=int)
+    DTOB = datetime.datetime(datearr[0],datearr[1],datearr[2],timearr[0],timearr[1],timearr[2])
+    return DTOB
+
 def GetTimeRange(present,rim):  # function to get a time array from an inputed time and +- limit
 
     edge = datetime.timedelta(hours=rim)
@@ -100,23 +107,39 @@ def Printer(t,x,y,name):
     numpy.savetxt(str(name)+'Visibility.txt',out,fmt='%s',header=head)
 #########################################################################################################3
 
+# for User input values uncomment this block
+
+Date,Time = str(sys.argv[1]), str(sys.argv[2])
+star_RA ,star_DEC = str(sys.argv[3]),str(sys.argv[4])  #test Star Coordinates  (Vega)
+Obs_Lat, Obs_Long =  str(sys.argv[5]),str(sys.argv[6]) # Observatory latitude,longitude
+elevation = float(sys.argv[7])
+
+if Date == 'SYST' or Time == 'SYST':
+    print 'Using System Time and Date'
+    Now = datetime.datetime.now()
+else:
+    print 'Using user determined Time and Date'
+    Now = DateObject(Date,Time)
+print  Now
+
+
+#Example/test coordinate
+'''
 Now = datetime.datetime.now()
-#Now = datetime.datetime.utcnow()
-#print Now
+star_RA ,star_DEC = '19:50:47.64','+8:52:12.7'  #test Star Coordinates  (Vega)
+Obs_Lat, Obs_Long = '18:47:25.08' , '98:58:54.11'  # Observatory latitude,longitude
+elevation = 0
+'''
 
- # for User input values uncomment these
-star_RA ,star_DEC = str(sys.argv[1]),str(sys.argv[2])  #test Star Coordinates  (Vega)
-Obs_Lat, Obs_Long =  str(sys.argv[3]),str(sys.argv[4]) # Observatory latitude,longitude
-elevation = float(sys.argv[5])
 
-#Example coordinate
-#star_RA ,star_DEC = '19:50:47.64','+8:52:12.7'  #test Star Coordinates  (Vega)
-#Obs_Lat, Obs_Long = '18:47:25.08' , '98:58:54.11'  # Observatory latitude,longitude
-#elevation = 0
+
+######## Calcuations
+
+
 
 Tarr,CORD1,CORD2 = Visibility(Now,12,star_RA,star_DEC,Obs_Lat,Obs_Long,elevation)
 TM,MoonC1,MoonC2 = MoonVis(Now,12,Obs_Lat,Obs_Long,elevation)
 
 for i in range(0,len(Tarr)):
-    print Tarr[i] , CORD2[i]
-
+    print Tarr[i] , CORD2[i] , MoonC2[i]
+    #pass
