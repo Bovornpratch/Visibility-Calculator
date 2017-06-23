@@ -17,7 +17,7 @@ def DateObject(date,time):
 def GetTimeRange(present,rim):  # function to get a time array from an inputed time and +- limit
 
     edge = datetime.timedelta(hours=rim)
-    step = datetime.timedelta(minutes=15)
+    step = datetime.timedelta(minutes=5)
     start , end =  (present - edge) , (present + edge)
 
     result = []
@@ -122,11 +122,13 @@ else:
     Now = DateObject(Date,Time)
 print  Now
 
-
-#Example/test coordinate
 '''
-Now = datetime.datetime.now()
-star_RA ,star_DEC = '19:50:47.64','+8:52:12.7'  #test Star Coordinates  (Vega)
+#Example/test coordinate
+
+#Now = datetime.datetime.now()
+star_RA ,star_DEC = '18:36:56.48','+38:47:07.3'  #test Star Coordinates  (Vega)
+star_RA ,star_DEC = '6:00:00','+23:00:00'  #test Star Coordinates  (Sun, summer solstice)
+
 Obs_Lat, Obs_Long = '18:47:25.08' , '98:58:54.11'  # Observatory latitude,longitude
 elevation = 0
 '''
