@@ -15,10 +15,18 @@ the ephem module also utilizes python-tk which can be install with apt-get
 
     sudo apt-get install python-tk
 
-the scirpt takes in the right ascention(RA), Declination(DEC), Latittude(LAT), longitude(LONG) and the elevation(Elev) in sexidecimal form (Hr:min:secs , deg:':"). However, ELEV takes in normal numbers.
+The scipt input includes
+	
+	The observation date: YYYY-MM-DD format
+	The observer time: Hr:Min:sec
+    The object right ascention: Hr:Min:Sec
+    The object declination: Deg:Min:Sec
+	The observing latitude: Deg:Min:Sec format
+	The observing longitude: Deg:Min:Sec format
+	The observing elevation: int/float number
+	
+    Example Input:
+    
+    python VisObject2.py 2017-06-23 00:00:00 18:36:56.48 +38:47:07.3 18:47:25.08 98:58:54.11 0
 
-    python VisObject.py RA(hr:min:sec) DEC(deg:':") LAT(deg:':") LONG(deg:':") ELEV 
-    python VisMoon.py LAT(deg:':") LONG(deg:':") ELEV 
-
-Currenty it is set to print out the numbers on screen in to column forms including TIME/DATE and Altitude. However one may use the 'Printer' function to export the calculation to an ASCII text file.
-
+The script's output includes the time and date, the object's altitude, and the moon's altitude. However, truth is that the script also calculates the azimuthal angle of both objects too but it has been left out of the print out.
