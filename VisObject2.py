@@ -114,6 +114,12 @@ star_RA ,star_DEC = str(sys.argv[3]),str(sys.argv[4])  #test Star Coordinates  (
 Obs_Lat, Obs_Long =  str(sys.argv[5]),str(sys.argv[6]) # Observatory latitude,longitude
 elevation = float(sys.argv[7])
 
+if (star_RA == '-1' ) is True :
+    print datetime.datetime.now() ,0 ,0 
+    sys.exit()
+else: 
+    pass
+
 if Date == 'SYST' or Time == 'SYST':
     print 'Using System Time and Date'
     Now = datetime.datetime.now()
@@ -131,9 +137,8 @@ star_RA ,star_DEC = '6:00:00','+23:00:00'  #test Star Coordinates  (Sun, summer 
 
 Obs_Lat, Obs_Long = '18:47:25.08' , '98:58:54.11'  # Observatory latitude,longitude
 elevation = 0
+Now = datetime.datetime.now()
 '''
-
-
 
 ######## Calcuations
 
